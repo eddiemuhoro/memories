@@ -8,5 +8,5 @@ export const getPosts = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
     //added new code
-    
+    // res.send('This works!')
 }
