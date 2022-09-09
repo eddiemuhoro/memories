@@ -18,7 +18,14 @@ app.use(cors())
 app.use(express.json({limit: '30mb', extended: true}))
 app.use(express.urlencoded({limit: '30mb', extended: true}))
 
-app.use('/post', router)  
+app.use('/post', router)
+
+app.use(express.static(path.join(__dirname, "/client")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`))
 
 //serve frontend
