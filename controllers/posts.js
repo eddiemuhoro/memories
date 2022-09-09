@@ -1,4 +1,4 @@
-import express from 'express'
+
 import PostMessage from '../model/PostMessageSchema.js';
 export const getPosts = async (req, res) => {
     try {
@@ -20,4 +20,6 @@ export const createPost = async (req, res)=>{
     }catch{
         res.status(409).json({message: error.message})
     }
+    console.log(newPost)
 }
+

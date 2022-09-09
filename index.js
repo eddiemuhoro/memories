@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from "dotenv"
+import cors from "cors"
 dotenv.config();
 
 
@@ -12,10 +13,12 @@ import router from './routers/posts.js';
 connectDB()
 
 const app = express()
-
+app.use(cors())
 //accepting body data
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+app.use(express.json({limit: '30mb', extended: true}))
+app.use(express.urlencoded({limit: '30mb', extended: true}))
 
-app.use('/post', router)
+app.use('/post', router)  
 app.listen(port, () => console.log(`Listening on port ${port}`))
+
+//serve frontend
